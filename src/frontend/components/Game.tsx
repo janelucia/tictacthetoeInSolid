@@ -6,10 +6,6 @@ const Game = () => {
       <div>
         <Board />
       </div>
-      <div>
-        <div>status</div>
-        <ol>TODO</ol>
-      </div>
     </div>
   );
 };
