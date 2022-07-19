@@ -3,5 +3,7 @@
 @tailwind utilities;
 
 html {
-  background-color: #202430;
+  background-color: #086f83;
+  color: #edfdfd;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
