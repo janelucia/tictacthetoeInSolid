@@ -1,1 +1,3 @@
-# Tic Tac The Toe
+# Hello 👋
+
+![Tic Tac The Toe Logo](src/assets/icon/logoWithText.svg)
