@@ -272,6 +272,11 @@
     "@babel/helper-validator-identifier" "^7.18.6"
     to-fast-properties "^2.0.0"
 
+"@fontsource/libre-franklin@^4.5.8":
+  version "4.5.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/libre-franklin/-/libre-franklin-4.5.8.tgz#de80c357efa0e1a4369b2f9e148acd86f4aaa2db"
+  integrity sha512-EHTDQx/D2DAFl03CHnFDIxusLkv0hFKG9ka/M1HR69lHCGvKcgZVbjg7ahXLgmaq9KUjyJ3OU/+2D+BpUD4nvA==
+
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
   resolved "https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.1.1.tgz"

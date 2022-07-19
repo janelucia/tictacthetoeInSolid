@@ -1,6 +1,6 @@
 /* @refresh reload */
 import { render } from 'solid-js/web';
-
+import '@fontsource/libre-franklin';
 import './frontend/styles/index.css';
 import App from './frontend/routes/App';
 import Browse from './frontend/routes/Browse';
