@@ -1,7 +1,8 @@
 import { JSX } from 'solid-js';
+import { SquareValue } from './Board';
 
 type Square = {
-  value: string;
+  value: SquareValue;
   onClick: JSX.EventHandlerUnion<HTMLButtonElement, MouseEvent> | undefined;
 };
 

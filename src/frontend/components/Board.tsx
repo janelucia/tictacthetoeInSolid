@@ -1,11 +1,15 @@
 import { createSignal } from 'solid-js';
 import Square from './Square';
 
+export type SquareValue = 'X' | 'O' | '';
+
 const Board = () => {
-  const [mark, setMark] = createSignal({ squares: Array(9).fill('') });
-  const [player, setPlayer] = createSignal('X');
+  const [mark, setMark] = createSignal<{ squares: SquareValue[] }>({
+    squares: Array(9).fill('X'),
+  });
+  const [player, setPlayer] = createSignal<SquareValue>('X');
   const togglePlayer = () => {
-    setPlayer('O');
+    player() === 'O' ? setPlayer('X') : setPlayer('O');
   };
 
   return (
@@ -17,70 +21,90 @@ const Board = () => {
       >
         <div class="flex gap-x-2">
           <Square
-            value={mark}
+            value={mark().squares[0]}
             onClick={() => {
-              setMark('X');
-              togglePlayer;
+              setMark((prev) => {
+                return {
+                  squares: ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'],
+                };
+              });
+              togglePlayer();
             }}
           />
           <Square
-            value={mark}
+            value={mark().squares[1]}
             onClick={() => {
-              setMark('X');
-              togglePlayer;
+              setMark((prev) => {
+                return { squares: Array(9).fill('O') };
+              });
+              togglePlayer();
             }}
           />
           <Square
-            value={mark}
+            value={mark().squares[2]}
             onClick={() => {
-              setMark('X');
-              togglePlayer;
-            }}
-          />
-        </div>
-        <div class="flex gap-x-2">
-          <Square
-            value={mark}
-            onClick={() => {
-              setMark('X');
-              togglePlayer;
-            }}
-          />
-          <Square
-            value={mark}
-            onClick={() => {
-              setMark('X');
-              togglePlayer;
-            }}
-          />
-          <Square
-            value={mark}
-            onClick={() => {
-              setMark('X');
-              togglePlayer;
+              setMark((prev) => {
+                return { squares: Array(9).fill('O') };
+              });
+              togglePlayer();
             }}
           />
         </div>
         <div class="flex gap-x-2">
           <Square
-            value={mark}
+            value={mark().squares[3]}
             onClick={() => {
-              setMark('X');
-              togglePlayer;
+              setMark((prev) => {
+                return { squares: Array(9).fill('O') };
+              });
+              togglePlayer();
             }}
           />
           <Square
-            value={mark}
+            value={mark().squares[4]}
             onClick={() => {
-              setMark('X');
-              togglePlayer;
+              setMark((prev) => {
+                return { squares: Array(9).fill('O') };
+              });
+              togglePlayer();
             }}
           />
           <Square
-            value={mark}
+            value={mark().squares[5]}
             onClick={() => {
-              setMark('X');
-              togglePlayer;
+              setMark((prev) => {
+                return { squares: Array(9).fill('O') };
+              });
+              togglePlayer();
+            }}
+          />
+        </div>
+        <div class="flex gap-x-2">
+          <Square
+            value={mark().squares[6]}
+            onClick={() => {
+              setMark((prev) => {
+                return { squares: Array(9).fill('O') };
+              });
+              togglePlayer();
+            }}
+          />
+          <Square
+            value={mark().squares[7]}
+            onClick={() => {
+              setMark((prev) => {
+                return { squares: Array(9).fill('O') };
+              });
+              togglePlayer();
+            }}
+          />
+          <Square
+            value={mark().squares[8]}
+            onClick={() => {
+              setMark((prev) => {
+                return { squares: Array(9).fill('O') };
+              });
+              togglePlayer();
             }}
           />
         </div>
