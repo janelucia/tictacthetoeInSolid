@@ -15,7 +15,7 @@ const App: Component = () => {
         />
         <h1 class="font-franklin text-center text-xl">
           <strong>Tic Tac Toe</strong> as you have
-          <span class="font-bold">never</span> played it!
+          <span class="font-bold pl-1">never</span> played it!
         </h1>
         <Button action={() => navigate('/browse')}>Let's play!</Button>
       </main>
