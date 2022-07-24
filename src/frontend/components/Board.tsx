@@ -1,4 +1,4 @@
-import { createSignal, For, Show } from "solid-js";
+import { createSignal, For } from "solid-js";
 import Square from "./Square";
 
 export type SquareValue = "X" | "O" | "";
@@ -13,7 +13,10 @@ const Board = () => {
     rows: Array(3).fill(Array(3).fill("")),
   });
   // const newArray = [...original.slice(0,replaceAt ), el, ...arr.slice(replaceAt + 1)]
-  const fillBoard = (posX: number, posY: number) => {
+  const playerMove = (posX: number, posY: number) => {
+    if (board().rows[posY][posX] !== "") {
+      return;
+    }
     setBoard((prev) => {
       const original = prev.rows;
       return {
@@ -29,24 +32,24 @@ const Board = () => {
         ],
       };
     });
+    togglePlayer();
   };
 
   return (
     <div>
       <h2 class="py-2">Next Player: {player()}</h2>
       <section
-        style="background-image: url('src/assets/gameIcons/board.svg'); background-size: contain"
-        class="flex flex-col justify-center items-center"
+        style="background-image: url('src/assets/gameIcons/board.svg'); background-size: contain; background-repeat: no-repeat"
+        class="flex flex-col items-center"
       >
         <For each={board().rows}>
           {(row, posY) => (
-            <div class="grow-0">
+            <div class="flex">
               <For each={row}>
                 {(square, posX) => (
                   <Square
                     onClick={() => {
-                      fillBoard(posX(), posY());
-                      togglePlayer();
+                      playerMove(posX(), posY());
                     }}
                   >
                     {square}
