@@ -12,7 +12,6 @@ const Board = () => {
   const [board, setBoard] = createSignal<{ rows: SquareValue[][] }>({
     rows: Array(3).fill(Array(3).fill("")),
   });
-  // const newArray = [...original.slice(0,replaceAt ), el, ...arr.slice(replaceAt + 1)]
   const playerMove = (posX: number, posY: number) => {
     if (board().rows[posY][posX] !== "") {
       return;
