@@ -1,19 +1,18 @@
-import { createSignal, For } from "solid-js";
-import Square from "./Square";
-
-export type SquareValue = "X" | "O" | "";
+import { createSignal, For } from 'solid-js';
+import { SquareValue } from '../types/squareValue';
+import Square from './Square';
 
 const Board = () => {
-  const [player, setPlayer] = createSignal<SquareValue>("X");
+  const [player, setPlayer] = createSignal<SquareValue>('X');
   const togglePlayer = () => {
-    player() === "O" ? setPlayer("X") : setPlayer("O");
+    player() === 'O' ? setPlayer('X') : setPlayer('O');
   };
 
   const [board, setBoard] = createSignal<{ rows: SquareValue[][] }>({
-    rows: Array(3).fill(Array(3).fill("")),
+    rows: Array(3).fill(Array(3).fill('')),
   });
   const playerMove = (posX: number, posY: number) => {
-    if (board().rows[posY][posX] !== "") {
+    if (board().rows[posY][posX] !== '') {
       return;
     }
     setBoard((prev) => {
@@ -34,16 +33,22 @@ const Board = () => {
     togglePlayer();
   };
 
+  const winningCondition = () => {
+    board().rows.filter(() => {
+      player();
+    });
+  };
+
   return (
     <div>
-      <h2 class="py-2">Next Player: {player()}</h2>
+      <h2 class='py-2'>Next Player: {player()}</h2>
       <section
         style="background-image: url('src/assets/gameIcons/board.svg'); background-size: contain; background-repeat: no-repeat"
-        class="flex flex-col items-center"
+        class='flex flex-col items-center'
       >
         <For each={board().rows}>
           {(row, posY) => (
-            <div class="flex">
+            <div class='flex'>
               <For each={row}>
                 {(square, posX) => (
                   <Square
