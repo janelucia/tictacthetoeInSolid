@@ -1,4 +1,4 @@
-import { createSignal, For } from 'solid-js';
+import { createSignal, For, Show } from 'solid-js';
 import { SquareValue } from '../types/squareValue';
 import Square from './Square';
 
@@ -7,6 +7,7 @@ const Board = () => {
   const togglePlayer = () => {
     player() === 'O' ? setPlayer('X') : setPlayer('O');
   };
+  const [gameFinished, setGameFinished] = createSignal<boolean>(false);
 
   const [board, setBoard] = createSignal<{ rows: SquareValue[][] }>({
     rows: Array(3).fill(Array(3).fill('')),
@@ -30,25 +31,34 @@ const Board = () => {
         ],
       };
     });
+    if (winningCondition()) {
+      setGameFinished(true);
+      return;
+    }
     togglePlayer();
   };
 
   const winningCondition = () => {
-    board().rows.filter(() => {
-      player();
-    });
+    const p = player();
+    const b = board().rows;
+
+    return (
+      (b[0][0] === p && b[0][1] === p && b[0][2] === p) ||
+      (b[1][0] === p && b[1][1] === p && b[1][2] === p) ||
+      (b[2][0] === p && b[2][1] === p && b[2][2] === p)
+    );
   };
 
   return (
     <div>
-      <h2 class='py-2'>Next Player: {player()}</h2>
+      <h2 class="py-2">Next Player: {player()}</h2>
       <section
         style="background-image: url('src/assets/gameIcons/board.svg'); background-size: contain; background-repeat: no-repeat"
-        class='flex flex-col items-center'
+        class="flex flex-col items-center"
       >
         <For each={board().rows}>
           {(row, posY) => (
-            <div class='flex'>
+            <div class="flex">
               <For each={row}>
                 {(square, posX) => (
                   <Square
@@ -64,6 +74,9 @@ const Board = () => {
           )}
         </For>
       </section>
+      <Show when={gameFinished()}>
+        <h1>{player()} won!</h1>
+      </Show>
     </div>
   );
 };
