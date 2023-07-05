@@ -9,9 +9,11 @@ const Board = () => {
   };
   const [gameFinished, setGameFinished] = createSignal<boolean>(false);
 
-  const [board, setBoard] = createSignal<{ rows: SquareValue[][] }>({
+  const initialBoard = {
     rows: Array(3).fill(Array(3).fill('')),
-  });
+  };
+
+  const [board, setBoard] = createSignal<{ rows: SquareValue[][] }>(initialBoard);
   const playerMove = (posX: number, posY: number) => {
     if (board().rows[posY][posX] !== '') {
       return;
@@ -41,13 +43,24 @@ const Board = () => {
   const winningCondition = () => {
     const p = player();
     const b = board().rows;
+    const across = (b[0][0] === p && b[0][1] === p && b[0][2] === p) ||
+    (b[1][0] === p && b[1][1] === p && b[1][2] === p) ||
+    (b[2][0] === p && b[2][1] === p && b[2][2] === p);
+    const down = (b[0][0] === p && b[1][0] === p && b[2][0] === p) ||
+    (b[0][1] === p && b[1][1] === p && b[2][1] === p) ||
+    (b[0][2] === p && b[1][2] === p && b[2][2] === p);
+    const diagonally = (b[0][0] === p && b[1][1] === p && b[2][2] === p) ||
+    (b[2][0] === p && b[1][1] === p && b[0][2] === p);
 
     return (
-      (b[0][0] === p && b[0][1] === p && b[0][2] === p) ||
-      (b[1][0] === p && b[1][1] === p && b[1][2] === p) ||
-      (b[2][0] === p && b[2][1] === p && b[2][2] === p)
+      across || down || diagonally
     );
   };
+
+  const resetGame = () => {
+    setBoard(() => initialBoard);
+    setGameFinished(false);
+  }
 
   return (
     <div>
@@ -76,6 +89,9 @@ const Board = () => {
       </section>
       <Show when={gameFinished()}>
         <h1>{player()} won!</h1>
+        <div onClick={resetGame}>
+          <h2>Next Game</h2>
+        </div>
       </Show>
     </div>
   );
