@@ -5,6 +5,7 @@ const Profile = () => {
   return (
     <>
       <HeaderBar />
+      <main class="flex-1"></main>
       <Footer />
     </>
   );

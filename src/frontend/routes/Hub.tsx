@@ -6,7 +6,7 @@ const Hub = () => {
   return (
     <>
       <HeaderBar />
-      <main>
+      <main class="flex-1">
         <Game />
       </main>
       <Footer />

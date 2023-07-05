@@ -5,6 +5,7 @@ const Leaderboard = () => {
   return (
     <>
       <HeaderBar />
+      <main class="flex-1"></main>
       <Footer />
     </>
   );
