@@ -1,6 +1,9 @@
-const HeaderBar = ({ children }) => {
+import { Show } from 'solid-js';
+import { Menu } from './Menu';
+
+const HeaderBar = () => {
   return (
-    <section class="flex gap-x-12 font-franklin items-center">
+    <header class="flex gap-x-12 font-franklin items-center justify-between">
       <div class="flex gap-x-1">
         <img
           src="src/assets/icon/logo.svg"
@@ -13,8 +16,10 @@ const HeaderBar = ({ children }) => {
           <span class="text-logoLighter">Toe</span>
         </h1>
       </div>
-      {children}
-    </section>
+      <Show when={window.innerWidth > 768}>
+        <Menu />
+      </Show>
+    </header>
   );
 };
 

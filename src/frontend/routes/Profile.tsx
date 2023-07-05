@@ -1,5 +1,13 @@
+import { Footer } from '../components/Footer';
+import HeaderBar from '../components/HeaderBar';
+
 const Profile = () => {
-  return <h1>under construction</h1>;
+  return (
+    <>
+      <HeaderBar />
+      <Footer />
+    </>
+  );
 };
 
 export default Profile;

@@ -1,17 +1,17 @@
+import { Footer } from '../components/Footer';
 import Game from '../components/Game';
 import HeaderBar from '../components/HeaderBar';
 
-const Browse = () => {
+const Hub = () => {
   return (
     <>
-      <header>
-        <HeaderBar>NORMAL</HeaderBar>
-      </header>
+      <HeaderBar />
       <main>
         <Game />
       </main>
+      <Footer />
     </>
   );
 };
 
-export default Browse;
+export default Hub;
