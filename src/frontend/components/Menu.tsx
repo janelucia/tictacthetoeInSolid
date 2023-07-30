@@ -1,4 +1,4 @@
-import { Show, createEffect, createSignal, on } from 'solid-js';
+import { Show, createSignal, on } from 'solid-js';
 import { A } from '@solidjs/router';
 import { TbGoGame } from 'solid-icons/tb';
 import { FaSolidRankingStar, FaSolidXmark, FaSolidPlus } from 'solid-icons/fa';

@@ -1,4 +1,9 @@
-import type { Component } from 'solid-js';
+import {
+  createSignal,
+  type Component,
+  createEffect,
+  onCleanup,
+} from 'solid-js';
 import Button from '../components/Button';
 import HeaderBar from '../components/HeaderBar';
 import { useNavigate } from '@solidjs/router';

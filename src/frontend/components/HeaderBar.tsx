@@ -1,7 +1,24 @@
-import { Show } from 'solid-js';
+import { Show, createEffect, createSignal, onCleanup } from 'solid-js';
 import { Menu } from './Menu';
 
 const HeaderBar = () => {
+  function getMenuPosition(): 'desktop' | 'mobile' {
+    return window.innerWidth >= 768 ? 'desktop' : 'mobile';
+  }
+
+  const [menuPosition, setMenuPosition] = createSignal(getMenuPosition());
+
+  createEffect(() => {
+    const handleResize = () => {
+      setMenuPosition(getMenuPosition());
+    };
+
+    window.addEventListener('resize', handleResize);
+    onCleanup(() => {
+      window.removeEventListener('resize', handleResize);
+    });
+  });
+
   return (
     <header class="flex gap-x-12 font-franklin items-center justify-between">
       <div class="flex gap-x-1">
@@ -16,7 +33,7 @@ const HeaderBar = () => {
           <span class="text-logoLighter">Toe</span>
         </h1>
       </div>
-      <Show when={window.innerWidth > 768}>
+      <Show when={menuPosition() === 'desktop'}>
         <Menu />
       </Show>
     </header>
